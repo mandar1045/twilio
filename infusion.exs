@@ -14,6 +14,7 @@
     "Twilio's REST API (messages, calls, phone numbers, recordings, ...) for Elixir: " <>
       "typed structs, retries, pagination. Generated from Twilio's OpenAPI spec.",
   links: %{
+    "GitHub" => "https://github.com/mandar1045/twilio",
     "Twilio API" => "https://www.twilio.com/docs/usage/api",
     "Infusion" => "https://github.com/mandar1045/infusion"
   },

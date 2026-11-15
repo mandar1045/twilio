@@ -13,6 +13,7 @@ defmodule Twilio.MixProject do
       package: [
         licenses: ["Apache-2.0"],
         links: %{
+          "GitHub" => "https://github.com/mandar1045/twilio",
           "Infusion" => "https://github.com/mandar1045/infusion",
           "Twilio API" => "https://www.twilio.com/docs/usage/api"
         }
