@@ -1,0 +1,35 @@
+defmodule Twilio.MixProject do
+  use Mix.Project
+
+  def project do
+    [
+      app: :twilio,
+      version: "0.1.0",
+      elixir: "~> 1.18",
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      description:
+        "Twilio's REST API (messages, calls, phone numbers, recordings, ...) for Elixir: typed structs, retries, pagination. Generated from Twilio's OpenAPI spec.",
+      package: [
+        licenses: ["Apache-2.0"],
+        links: %{
+          "Infusion" => "https://github.com/mandar1045/infusion",
+          "Twilio API" => "https://www.twilio.com/docs/usage/api"
+        }
+      ],
+      docs: [main: "readme", extras: ["README.md", "CHANGELOG.md"]]
+    ]
+  end
+
+  def application do
+    [extra_applications: [:logger]]
+  end
+
+  defp deps do
+    [
+      {:infusion_runtime, "~> 0.1.1"},
+      {:plug, "~> 1.14", only: :test},
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false}
+    ]
+  end
+end

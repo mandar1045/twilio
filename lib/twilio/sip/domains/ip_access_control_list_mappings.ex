@@ -1,0 +1,194 @@
+defmodule Twilio.Sip.Domains.IpAccessControlListMappings do
+  @moduledoc """
+  API calls: `create`, `delete`, `list`, `retrieve`.
+  """
+
+  @create_operation %{
+    id: "CreateSipIpAccessControlListMapping",
+    method: :post,
+    path:
+      "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings.json",
+    path_params: ["DomainSid"],
+    client_path_params: [{"AccountSid", :account_sid}],
+    params: [{:ip_access_control_list_sid, "IpAccessControlListSid", :body}],
+    body: :form,
+    response: {:ref, Twilio.Schemas.SipIpAccessControlListMapping}
+  }
+
+  @doc """
+  Create a new IpAccessControlListMapping resource.
+
+  `POST /2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings.json`
+
+  ## Path parameters
+
+    * `domain_sid` (required) - A 34 character string that uniquely identifies the SIP domain.
+
+  `{AccountSid}` in the path is the `:account_sid` setting; pass `account_sid: "..."` as an option to use another.
+
+  ## Parameters
+
+    * `ip_access_control_list_sid` (required) - The unique id of the IP access control list to map to the SIP domain.
+  """
+  @spec create(String.t(), map() | keyword(), keyword()) ::
+          {:ok, Twilio.Schemas.SipIpAccessControlListMapping.t()}
+          | {:error, Infusion.Runtime.Error.t()}
+  def create(domain_sid, params \\ %{}, opts \\ []),
+    do: Twilio.__request__(@create_operation, [domain_sid], params, opts)
+
+  @doc "Like `create/3`, but returns the result or raises `Infusion.Runtime.Error`."
+  @spec create!(String.t(), map() | keyword(), keyword()) ::
+          Twilio.Schemas.SipIpAccessControlListMapping.t()
+  def create!(domain_sid, params \\ %{}, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__request__(@create_operation, [domain_sid], params, opts)
+      )
+
+  @delete_operation %{
+    id: "DeleteSipIpAccessControlListMapping",
+    method: :delete,
+    path:
+      "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings/{Sid}.json",
+    path_params: ["DomainSid", "Sid"],
+    client_path_params: [{"AccountSid", :account_sid}],
+    params: [],
+    response: nil
+  }
+
+  @doc """
+  Delete an IpAccessControlListMapping resource.
+
+  `DELETE /2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings/{Sid}.json`
+
+  ## Path parameters
+
+    * `domain_sid` (required) - A 34 character string that uniquely identifies the SIP domain.
+    * `sid` (required) - A 34 character string that uniquely identifies the resource to delete.
+
+  `{AccountSid}` in the path is the `:account_sid` setting; pass `account_sid: "..."` as an option to use another.
+  """
+  @spec delete(String.t(), String.t(), keyword()) ::
+          {:ok, nil} | {:error, Infusion.Runtime.Error.t()}
+  def delete(domain_sid, sid, opts \\ []),
+    do: Twilio.__request__(@delete_operation, [domain_sid, sid], %{}, opts)
+
+  @doc "Like `delete/3`, but returns the result or raises `Infusion.Runtime.Error`."
+  @spec delete!(String.t(), String.t(), keyword()) :: nil
+  def delete!(domain_sid, sid, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__request__(@delete_operation, [domain_sid, sid], %{}, opts)
+      )
+
+  @list_operation %{
+    id: "ListSipIpAccessControlListMapping",
+    method: :get,
+    path:
+      "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings.json",
+    path_params: ["DomainSid"],
+    client_path_params: [{"AccountSid", :account_sid}],
+    params: [
+      {:page_size, "PageSize", :query},
+      {:page, "Page", :query},
+      {:page_token, "PageToken", :query}
+    ],
+    response: {:ref, Twilio.Schemas.SipDomainsIpAccessControlListMappingsListResponse},
+    paginate: %{
+      from: ["next_page_uri"],
+      items: ["ip_access_control_list_mappings"],
+      style: :next_url,
+      item: {:ref, Twilio.Schemas.SipIpAccessControlListMapping}
+    }
+  }
+
+  @doc """
+  Retrieve a list of IpAccessControlListMapping resources.
+
+  `GET /2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings.json`
+
+  ## Path parameters
+
+    * `domain_sid` (required) - A 34 character string that uniquely identifies the SIP domain.
+
+  `{AccountSid}` in the path is the `:account_sid` setting; pass `account_sid: "..."` as an option to use another.
+
+  ## Parameters
+
+    * `page_size` - How many resources to return in each list page. The default is 50, and the maximum is 1000.
+    * `page` - The page index. This value is simply for client state.
+    * `page_token` - The page token. This is provided by the API.
+
+  To read every item across all pages, use `list_all`.
+  """
+  @spec list(String.t(), map() | keyword(), keyword()) ::
+          {:ok, Twilio.Schemas.SipDomainsIpAccessControlListMappingsListResponse.t()}
+          | {:error, Infusion.Runtime.Error.t()}
+  def list(domain_sid, params \\ %{}, opts \\ []),
+    do: Twilio.__request__(@list_operation, [domain_sid], params, opts)
+
+  @doc "Like `list/3`, but returns the result or raises `Infusion.Runtime.Error`."
+  @spec list!(String.t(), map() | keyword(), keyword()) ::
+          Twilio.Schemas.SipDomainsIpAccessControlListMappingsListResponse.t()
+  def list!(domain_sid, params \\ %{}, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__request__(@list_operation, [domain_sid], params, opts)
+      )
+
+  @doc """
+  Like `list/3`, but returns every item, from every page: a lazy stream of `Twilio.Schemas.SipIpAccessControlListMapping.t()` that fetches pages as it is read.
+
+  The first page is fetched right away, so its errors are returned; a later page that fails raises `Infusion.Runtime.Error`. Stopping early (`Enum.take/2`) fetches no more pages.
+  """
+  @spec list_all(String.t(), map() | keyword(), keyword()) ::
+          {:ok, Enumerable.t()} | {:error, Infusion.Runtime.Error.t()}
+  def list_all(domain_sid, params \\ %{}, opts \\ []),
+    do: Twilio.__paginate__(@list_operation, [domain_sid], params, opts)
+
+  @doc "Like `list_all/3`, but returns the stream or raises `Infusion.Runtime.Error`."
+  @spec list_all!(String.t(), map() | keyword(), keyword()) :: Enumerable.t()
+  def list_all!(domain_sid, params \\ %{}, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__paginate__(@list_operation, [domain_sid], params, opts)
+      )
+
+  @retrieve_operation %{
+    id: "FetchSipIpAccessControlListMapping",
+    method: :get,
+    path:
+      "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings/{Sid}.json",
+    path_params: ["DomainSid", "Sid"],
+    client_path_params: [{"AccountSid", :account_sid}],
+    params: [],
+    response: {:ref, Twilio.Schemas.SipIpAccessControlListMapping}
+  }
+
+  @doc """
+  Fetch an IpAccessControlListMapping resource.
+
+  `GET /2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings/{Sid}.json`
+
+  ## Path parameters
+
+    * `domain_sid` (required) - A 34 character string that uniquely identifies the SIP domain.
+    * `sid` (required) - A 34 character string that uniquely identifies the resource to fetch.
+
+  `{AccountSid}` in the path is the `:account_sid` setting; pass `account_sid: "..."` as an option to use another.
+  """
+  @spec retrieve(String.t(), String.t(), keyword()) ::
+          {:ok, Twilio.Schemas.SipIpAccessControlListMapping.t()}
+          | {:error, Infusion.Runtime.Error.t()}
+  def retrieve(domain_sid, sid, opts \\ []),
+    do: Twilio.__request__(@retrieve_operation, [domain_sid, sid], %{}, opts)
+
+  @doc "Like `retrieve/3`, but returns the result or raises `Infusion.Runtime.Error`."
+  @spec retrieve!(String.t(), String.t(), keyword()) ::
+          Twilio.Schemas.SipIpAccessControlListMapping.t()
+  def retrieve!(domain_sid, sid, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__request__(@retrieve_operation, [domain_sid, sid], %{}, opts)
+      )
+end
