@@ -3,7 +3,8 @@
 Twilio's REST API for Elixir: send messages, make calls, buy phone numbers,
 read recordings and usage. Every call of Twilio's core API (`2010-04-01`,
 197 operations) has a function with docs and typespecs, and every response
-decodes into a struct.
+decodes into a struct. Plus what isn't in the API: checking that webhooks
+come from Twilio, and access tokens for Twilio's client SDKs.
 
 ```elixir
 {:ok, message} =
@@ -21,7 +22,7 @@ as Twilio changes it.
 
 ```elixir
 def deps do
-  [{:twilio, "~> 0.1"}]
+  [{:twilio, "~> 0.2"}]
 end
 ```
 
@@ -110,6 +111,48 @@ Twilio.Messages.retrieve("SM...", timeout: 5_000, max_retries: 0)
 function for, and `raw: true` returns the whole `%Req.Response{}`, for
 headers.
 
+## Webhooks
+
+Twilio signs the requests it sends your app (incoming messages and calls,
+status callbacks) with your auth token. Check the signature before trusting
+one:
+
+```elixir
+def incoming_sms(conn, params) do
+  signature = conn |> get_req_header("x-twilio-signature") |> List.first()
+
+  if Twilio.Webhook.valid?(current_url(conn), params, signature) do
+    # params["From"], params["Body"], ...
+  else
+    send_resp(conn, 403, "")
+  end
+end
+```
+
+The URL must be the public one Twilio called, query string included. The
+auth token comes from `config :twilio, auth_token: ...` or
+`TWILIO_AUTH_TOKEN`. JSON bodies (`bodySHA256`) and SharedKey (HMAC-SHA256)
+signatures work too. `Twilio.Webhook.signature/3` signs requests for your
+tests.
+
+## Access tokens
+
+For Twilio's Voice, Video, Conversations and Sync client SDKs, your server
+hands each user a short-lived token, signed with an
+[API key](https://www.twilio.com/docs/iam/api-keys):
+
+```elixir
+Twilio.AccessToken.generate(
+  identity: "alice",
+  grants: [voice: [outgoing_application_sid: "AP...", incoming_allow: true]],
+  ttl: 3600
+)
+```
+
+The key comes from `config :twilio, api_key_sid: ..., api_key_secret: ...`
+or `TWILIO_API_KEY` and `TWILIO_API_SECRET`. Grants: `voice`, `video`,
+`chat`, `sync`, `task_router`, `playback`.
+
 ## Testing your code
 
 Requests go through [Req](https://hexdocs.pm/req), so you can stub Twilio
@@ -132,8 +175,9 @@ assert {:ok, %Twilio.Schemas.Message{sid: "SM1"}} = MyApp.Notify.send_sms("+1555
 Twilio's core API: Messages, Calls (with recordings, streams, payments,
 transcriptions), Conferences, Queues, phone numbers (available, incoming,
 caller IDs), Addresses, Applications, Recordings, Transcriptions, SIP,
-Usage, Keys and Accounts. Twilio's newer product APIs (Verify, Conversations,
-Messaging Services, ...) are separate specs and not in this package yet.
+Usage, Keys and Accounts; webhook signatures and access tokens. Twilio's
+newer product APIs (Verify, Conversations, Messaging Services, ...) are
+separate specs and not in this package yet.
 
 ## License
 

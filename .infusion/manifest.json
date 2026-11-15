@@ -5,7 +5,7 @@
     ".github/workflows/ci.yml": "ed857d4da38bd4f22966d93ce899631a07d6f87086ebeb437b0285783ac8a02f",
     ".github/workflows/regenerate.yml": "d94b8102bd6e262667c039bc9c103ce70e7c87b10e6fc9ac4df359c439ca9350",
     ".gitignore": "2dd6b068c7d1f4c6449fc380fbe7ea1bdf028d39a1a8b4f6aa261cb68bb88c4b",
-    "lib/twilio.ex": "e15d4c717f0b53beb7c6d9bb0a7983bd9415bd87c8defc3dd943854c13fc075f",
+    "lib/twilio.ex": "f7961f89e633f215ff6d6fd27d893b0981a61da810c8d1ab290f17e8d65ba082",
     "lib/twilio/accounts.ex": "29906d2719240f63c9e3e4eec5b7ef7f2898e9b35dc520a5791647bc343086e7",
     "lib/twilio/addresses.ex": "9b763fe52dac523803c467d577608ca2449d69b618c32d7d02de95610b4a77cc",
     "lib/twilio/addresses/dependent_phone_numbers.ex": "b5817b75de63c5a8c6131b29b94363831d81b0be8c284eb740fa6d78af3f1e05",
@@ -300,6 +300,6 @@
     "lib/twilio/usage/records/yearly.ex": "813db5327b976f94677f58fc581595a6af8f9e008a02907b8a9a97e31f9247fe",
     "lib/twilio/usage/records/yesterday.ex": "009d2e4d15d8a95711c92a863120b439652f29d4188bd79565f35ee2176caff2",
     "lib/twilio/usage/triggers.ex": "cb7151c727963bc03dfe49c83a0553655b573d19c90d1cc2763c11c860a35d54",
-    "mix.exs": "35c084c50c2e14e552243e9c84b2471b2017c42be80b4badbee86df307f40fbe"
+    "mix.exs": "734e487c2122371b1c872728e2f4a2ecc53889bd6b32c1dd5da26b52687eb5ff"
   }
 }

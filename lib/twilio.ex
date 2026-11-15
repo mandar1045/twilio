@@ -23,7 +23,7 @@ defmodule Twilio do
     base_url: "https://api.twilio.com",
     api_key: {{:env, "TWILIO_ACCOUNT_SID"}, {:env, "TWILIO_AUTH_TOKEN"}},
     auth: :basic,
-    user_agent: "twilio/0.1.0 (Elixir; infusion_runtime)",
+    user_agent: "twilio/0.2.0 (Elixir; infusion_runtime)",
     account_sid: {:env, "TWILIO_ACCOUNT_SID"}
   ]
 

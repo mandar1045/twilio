@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0
+
+What isn't in Twilio's API spec, written by hand:
+
+  * `Twilio.Webhook.valid?/4`: checks the `X-Twilio-Signature` of a webhook
+    request, with the rules of Twilio's official SDKs (URL with and without
+    its port, sorted and deduplicated parameters, constant-time comparison),
+    JSON bodies (`bodySHA256`) and SharedKey HMAC-SHA256 signatures.
+    `Twilio.Webhook.signature/3` signs requests for tests. Checked against
+    twilio-python on 2,000 random requests and on real webhooks from Twilio
+  * `Twilio.AccessToken.generate/1`: access tokens for Twilio's client SDKs,
+    with voice, video, chat, sync, task_router and playback grants; the same
+    claims as twilio-python's tokens
+
 ## 0.1.0
 
 First release: Twilio's core REST API (`2010-04-01`), generated from Twilio's
