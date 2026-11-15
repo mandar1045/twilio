@@ -1,9 +1,9 @@
 {
-  "generator": "infusion 0.5.0",
+  "generator": "infusion 0.5.1",
   "files": {
     ".formatter.exs": "1637a1d132f50f7e77f043c94078324f6fa047d538611a8ff86ac33119ff217e",
     ".github/workflows/ci.yml": "ed857d4da38bd4f22966d93ce899631a07d6f87086ebeb437b0285783ac8a02f",
-    ".github/workflows/regenerate.yml": "8997b8426bc313ad468ca3aaf991935f8fe5078e0b6fd7c9e4c55efa69e07163",
+    ".github/workflows/regenerate.yml": "d94b8102bd6e262667c039bc9c103ce70e7c87b10e6fc9ac4df359c439ca9350",
     ".gitignore": "2dd6b068c7d1f4c6449fc380fbe7ea1bdf028d39a1a8b4f6aa261cb68bb88c4b",
     "lib/twilio.ex": "e15d4c717f0b53beb7c6d9bb0a7983bd9415bd87c8defc3dd943854c13fc075f",
     "lib/twilio/accounts.ex": "29906d2719240f63c9e3e4eec5b7ef7f2898e9b35dc520a5791647bc343086e7",
