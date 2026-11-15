@@ -19,7 +19,7 @@
     "Infusion" => "https://github.com/mandar1045/infusion"
   },
   # Hand-written; regenerating doesn't touch it
-  keep: ["README.md"],
+  keep: ["README.md", "CHANGELOG.md"],
 
   # Basic auth with the account SID and auth token, as the official SDKs do
   auth: :basic,

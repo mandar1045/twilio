@@ -29,6 +29,7 @@ defmodule Twilio.MixProject do
   defp deps do
     [
       {:infusion_runtime, "~> 0.1.1"},
+      {:infusion, "~> 0.5.0", only: :dev, runtime: false},
       {:plug, "~> 1.14", only: :test},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false}
     ]
