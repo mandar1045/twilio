@@ -22,7 +22,7 @@ as Twilio changes it.
 
 ```elixir
 def deps do
-  [{:twilio, "~> 0.1"}]
+  [{:twilio, "~> 0.2"}]
 end
 ```
 
@@ -113,7 +113,7 @@ headers.
 
 ## Webhooks
 
-*From version 0.2.0.* Twilio signs the requests it sends your app (incoming messages and calls,
+Twilio signs the requests it sends your app (incoming messages and calls,
 status callbacks) with your auth token. Check the signature before trusting
 one:
 
@@ -137,7 +137,7 @@ tests.
 
 ## Access tokens
 
-*From version 0.2.0.* For Twilio's Voice, Video, Conversations and Sync client SDKs, your server
+For Twilio's Voice, Video, Conversations and Sync client SDKs, your server
 hands each user a short-lived token, signed with an
 [API key](https://www.twilio.com/docs/iam/api-keys):
 
