@@ -3,7 +3,7 @@
 ## 0.1.0
 
 First release: Twilio's core REST API (`2010-04-01`), generated from Twilio's
-OpenAPI spec by Infusion 0.3.
+OpenAPI spec by Infusion 0.4.
 
   * 197 operations, one function each (plus a `!` variant), with docs and
     typespecs: `Twilio.Messages.create/2`, `Twilio.Calls.update/3`,
