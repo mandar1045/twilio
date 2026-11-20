@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.SmsFeedbackEnumOutcome do
-  @moduledoc false
+  @moduledoc """
+  One of `"confirmed"`, `"unconfirmed"`, `"received"`, `"not-received"`, `"delayed"`.
+  """
 
   @type t :: String.t()
 

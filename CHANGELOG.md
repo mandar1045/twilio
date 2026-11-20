@@ -2,7 +2,7 @@
 
 ## 0.3.0
 
-Regenerated with Infusion 0.6.0 (`infusion_runtime` 0.2).
+Regenerated with Infusion 0.6.1 (`infusion_runtime` 0.2.1).
 
   * Every list can be watched: `Twilio.Messages.list_watch/2` (and the
     `_watch` of every other list) sends `:created` and `:updated` events,
@@ -12,6 +12,7 @@ Regenerated with Infusion 0.6.0 (`infusion_runtime` 0.2).
   * Drift checking: with `config :infusion_runtime, drift: true`, responses
     are compared with Twilio's spec (`Infusion.Runtime.Drift`)
   * Structs say which fields are required and nullable
+  * Enum types have docs (HexDocs no longer warns about hidden modules)
 
 ## 0.2.0
 

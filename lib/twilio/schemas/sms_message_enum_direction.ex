@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.SmsMessageEnumDirection do
-  @moduledoc false
+  @moduledoc """
+  One of `"inbound"`, `"outbound-api"`, `"outbound-call"`, `"outbound-reply"`.
+  """
 
   @type t :: String.t()
 

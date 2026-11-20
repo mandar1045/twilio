@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.CallEnumEvent do
-  @moduledoc false
+  @moduledoc """
+  One of `"initiated"`, `"ringing"`, `"answered"`, `"completed"`.
+  """
 
   @type t :: String.t()
 

@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.IncomingPhoneNumberTollFreeEnumVoiceReceiveMode do
-  @moduledoc false
+  @moduledoc """
+  One of `"voice"`, `"fax"`.
+  """
 
   @type t :: String.t()
 

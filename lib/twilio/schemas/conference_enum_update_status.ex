@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.ConferenceEnumUpdateStatus do
-  @moduledoc false
+  @moduledoc """
+  One of `"completed"`.
+  """
 
   @type t :: String.t()
 

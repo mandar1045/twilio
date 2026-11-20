@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.MessageEnumTrafficType do
-  @moduledoc false
+  @moduledoc """
+  One of `"free"`.
+  """
 
   @type t :: String.t()
 

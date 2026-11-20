@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.SmsMessageEnumUpdateStatus do
-  @moduledoc false
+  @moduledoc """
+  One of `"canceled"`.
+  """
 
   @type t :: String.t()
 

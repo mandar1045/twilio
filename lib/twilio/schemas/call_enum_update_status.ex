@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.CallEnumUpdateStatus do
-  @moduledoc false
+  @moduledoc """
+  One of `"canceled"`, `"completed"`.
+  """
 
   @type t :: String.t()
 

@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.SmsMessageEnumStatus do
-  @moduledoc false
+  @moduledoc """
+  One of `"queued"`, `"sending"`, `"sent"`, `"failed"`, `"delivered"`, `"undelivered"`, `"receiving"`, `"received"`, `"accepted"`, `"scheduled"`, `"read"`, `"partially_delivered"`, `"canceled"`.
+  """
 
   @type t :: String.t()
 

@@ -1,5 +1,7 @@
 defmodule Twilio.Schemas.SiprecEnumUpdateStatus do
-  @moduledoc false
+  @moduledoc """
+  One of `"stopped"`.
+  """
 
   @type t :: String.t()
 
