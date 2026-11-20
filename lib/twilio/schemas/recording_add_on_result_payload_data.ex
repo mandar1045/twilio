@@ -19,6 +19,10 @@ defmodule Twilio.Schemas.RecordingAddOnResultPayloadData do
     [{:redirect_to, "redirect_to", :string}]
   end
 
+  def __schema__(:required), do: []
+  def __schema__(:nullable), do: ["redirect_to"]
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

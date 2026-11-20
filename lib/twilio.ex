@@ -23,7 +23,7 @@ defmodule Twilio do
     base_url: "https://api.twilio.com",
     api_key: {{:env, "TWILIO_ACCOUNT_SID"}, {:env, "TWILIO_AUTH_TOKEN"}},
     auth: :basic,
-    user_agent: "twilio/0.2.0 (Elixir; infusion_runtime)",
+    user_agent: "twilio/0.3.0 (Elixir; infusion_runtime)",
     account_sid: {:env, "TWILIO_ACCOUNT_SID"}
   ]
 
@@ -69,5 +69,10 @@ defmodule Twilio do
   @doc false
   def __paginate__(operation, path_args, params, opts) do
     Infusion.Runtime.Paginate.stream(config(), operation, path_args, params, opts)
+  end
+
+  @doc false
+  def __watch__(operation, path_args, params, opts) do
+    Infusion.Runtime.Watch.start_link(config(), operation, path_args, params, opts)
   end
 end

@@ -77,6 +77,28 @@ defmodule Twilio.Schemas.Notification do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "api_version",
+      "call_sid",
+      "date_created",
+      "date_updated",
+      "error_code",
+      "log",
+      "message_date",
+      "message_text",
+      "more_info",
+      "request_method",
+      "request_url",
+      "sid",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

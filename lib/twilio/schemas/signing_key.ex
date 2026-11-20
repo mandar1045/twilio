@@ -30,6 +30,10 @@ defmodule Twilio.Schemas.SigningKey do
     ]
   end
 
+  def __schema__(:required), do: []
+  def __schema__(:nullable), do: ["date_created", "date_updated", "friendly_name", "sid"]
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

@@ -4,7 +4,7 @@ defmodule Twilio.MixProject do
   def project do
     [
       app: :twilio,
-      version: "0.2.0",
+      version: "0.3.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -28,8 +28,8 @@ defmodule Twilio.MixProject do
 
   defp deps do
     [
-      {:infusion_runtime, "~> 0.1.1"},
-      {:infusion, "~> 0.5.0", only: :dev, runtime: false},
+      {:infusion_runtime, "~> 0.2.0"},
+      {:infusion, "~> 0.6.0", only: :dev, runtime: false},
       {:plug, "~> 1.14", only: :test},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false}
     ]

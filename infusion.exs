@@ -8,7 +8,7 @@
   spec: "https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json",
   out: ".",
   app: :twilio,
-  version: "0.2.0",
+  version: "0.3.0",
   license: "Apache-2.0",
   description:
     "Twilio's REST API (messages, calls, phone numbers, recordings, ...) for Elixir: " <>

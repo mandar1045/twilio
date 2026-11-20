@@ -73,6 +73,26 @@ defmodule Twilio.Schemas.RecordingTranscription do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "api_version",
+      "date_created",
+      "date_updated",
+      "duration",
+      "price",
+      "price_unit",
+      "recording_sid",
+      "sid",
+      "transcription_text",
+      "type",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

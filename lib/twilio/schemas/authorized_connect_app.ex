@@ -54,6 +54,22 @@ defmodule Twilio.Schemas.AuthorizedConnectApp do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "connect_app_company_name",
+      "connect_app_description",
+      "connect_app_friendly_name",
+      "connect_app_homepage_url",
+      "connect_app_sid",
+      "permissions",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

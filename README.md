@@ -111,6 +111,25 @@ Twilio.Messages.retrieve("SM...", timeout: 5_000, max_retries: 0)
 function for, and `raw: true` returns the whole `%Req.Response{}`, for
 headers.
 
+## Watching messages and calls
+
+Every list has a `_watch` function that sends what changes, so delivery
+updates arrive as messages instead of polling code:
+
+```elixir
+{:ok, watcher} = Twilio.Messages.list_watch(%{}, every: 15_000, async: true)
+
+# in the process that started it (a GenServer, a LiveView):
+def handle_info({:infusion_watch, _watcher, %{type: :updated, item: message, changes: %{status: {old, new}}}}, state) do
+  # "queued" -> "sent" -> "delivered", or "undelivered" with message.error_code
+  {:noreply, state}
+end
+```
+
+New messages arrive as `:created`. Unchanged pages cost a `304`. Use
+`async: true` in a supervision tree, so the app starts even if Twilio is
+unreachable at boot. See `Infusion.Runtime.Watch` for every option.
+
 ## Webhooks
 
 Twilio signs the requests it sends your app (incoming messages and calls,

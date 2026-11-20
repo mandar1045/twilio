@@ -81,6 +81,29 @@ defmodule Twilio.Schemas.UsageRecordDaily do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "api_version",
+      "as_of",
+      "category",
+      "count",
+      "count_unit",
+      "description",
+      "end_date",
+      "price",
+      "price_unit",
+      "start_date",
+      "subresource_uris",
+      "uri",
+      "usage",
+      "usage_unit"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

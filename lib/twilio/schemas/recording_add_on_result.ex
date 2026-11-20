@@ -61,6 +61,23 @@ defmodule Twilio.Schemas.RecordingAddOnResult do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "add_on_configuration_sid",
+      "add_on_sid",
+      "date_completed",
+      "date_created",
+      "date_updated",
+      "reference_sid",
+      "sid",
+      "subresource_uris"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

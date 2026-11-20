@@ -49,6 +49,21 @@ defmodule Twilio.Schemas.Token do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "date_created",
+      "date_updated",
+      "ice_servers",
+      "password",
+      "ttl",
+      "username"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

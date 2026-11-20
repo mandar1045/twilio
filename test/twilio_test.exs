@@ -125,4 +125,47 @@ defmodule TwilioTest do
 
     assert_raise ArgumentError, ~r/:account_sid setting/, fn -> Twilio.Messages.list() end
   end
+
+  test "watches messages: delivery status changes arrive as events" do
+    Req.Test.set_req_test_to_shared()
+    on_exit(fn -> Req.Test.set_req_test_to_private() end)
+
+    # A fake Messages list, newest first, paged by next_page_uri like Twilio's.
+    {:ok, api} =
+      Agent.start_link(fn -> [%{@message | "status" => "delivered", "sid" => "SM0"}] end)
+
+    Req.Test.stub(__MODULE__, fn conn ->
+      assert conn.request_path == "/2010-04-01/Accounts/AC123/Messages.json"
+      messages = Agent.get(api, & &1)
+
+      Req.Test.json(conn, %{
+        "messages" => messages,
+        "next_page_uri" => nil,
+        "page" => 0,
+        "page_size" => 50
+      })
+    end)
+
+    {:ok, watcher} = Twilio.Messages.list_watch(%{}, every: 20, pages: 1)
+
+    # A message sent now is :created; then its status moves on.
+    now = Calendar.strftime(DateTime.utc_now(), "%a, %d %b %Y %H:%M:%S +0000")
+    sent = %{@message | "date_created" => now}
+    Agent.update(api, &[sent | &1])
+
+    assert_receive {:infusion_watch, ^watcher,
+                    %{type: :created, id: "SM1", item: %{status: "queued"}}},
+                   1_000
+
+    for status <- ["sent", "delivered"] do
+      Agent.update(api, fn [m | rest] -> [%{m | "status" => status} | rest] end)
+
+      assert_receive {:infusion_watch, ^watcher, %{type: :updated, id: "SM1", changes: changes}},
+                     1_000
+
+      assert {_, ^status} = changes.status
+    end
+
+    Infusion.Runtime.Watch.stop(watcher)
+  end
 end

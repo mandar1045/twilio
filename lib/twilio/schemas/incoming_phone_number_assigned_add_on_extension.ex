@@ -57,6 +57,23 @@ defmodule Twilio.Schemas.IncomingPhoneNumberAssignedAddOnExtension do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "assigned_add_on_sid",
+      "enabled",
+      "friendly_name",
+      "product_name",
+      "resource_sid",
+      "sid",
+      "unique_name",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

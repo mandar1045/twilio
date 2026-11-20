@@ -49,6 +49,21 @@ defmodule Twilio.Schemas.Media do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "content_type",
+      "date_created",
+      "date_updated",
+      "parent_sid",
+      "sid",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

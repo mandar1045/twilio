@@ -58,6 +58,10 @@ defmodule Twilio.Schemas.AvailablePhoneNumbersVoipListResponse do
     ]
   end
 
+  def __schema__(:required), do: []
+  def __schema__(:nullable), do: ["next_page_uri", "previous_page_uri"]
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

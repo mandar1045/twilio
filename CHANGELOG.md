@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+Regenerated with Infusion 0.6.0 (`infusion_runtime` 0.2).
+
+  * Every list can be watched: `Twilio.Messages.list_watch/2` (and the
+    `_watch` of every other list) sends `:created` and `:updated` events,
+    with the fields that changed, so a message's `status` going from
+    `queued` to `sent` to `delivered` arrives as events instead of polling
+    code. Unchanged pages cost a `304`. See `Infusion.Runtime.Watch`
+  * Drift checking: with `config :infusion_runtime, drift: true`, responses
+    are compared with Twilio's spec (`Infusion.Runtime.Drift`)
+  * Structs say which fields are required and nullable
+
 ## 0.2.0
 
 What isn't in Twilio's API spec, written by hand:

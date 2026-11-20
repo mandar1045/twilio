@@ -69,6 +69,26 @@ defmodule Twilio.Schemas.ShortCode do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "api_version",
+      "date_created",
+      "date_updated",
+      "friendly_name",
+      "short_code",
+      "sid",
+      "sms_fallback_method",
+      "sms_fallback_url",
+      "sms_method",
+      "sms_url",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

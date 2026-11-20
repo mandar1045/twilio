@@ -105,6 +105,35 @@ defmodule Twilio.Schemas.SipDomain do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "api_version",
+      "auth_type",
+      "byoc_trunk_sid",
+      "date_created",
+      "date_updated",
+      "domain_name",
+      "emergency_caller_sid",
+      "emergency_calling_enabled",
+      "friendly_name",
+      "secure",
+      "sid",
+      "sip_registration",
+      "subresource_uris",
+      "uri",
+      "voice_fallback_method",
+      "voice_fallback_url",
+      "voice_method",
+      "voice_status_callback_method",
+      "voice_status_callback_url",
+      "voice_url"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

@@ -129,6 +129,40 @@ defmodule Twilio.Schemas.Call do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "answered_by",
+      "api_version",
+      "caller_name",
+      "date_created",
+      "date_updated",
+      "direction",
+      "duration",
+      "end_time",
+      "forwarded_from",
+      "from",
+      "from_formatted",
+      "group_sid",
+      "parent_call_sid",
+      "phone_number_sid",
+      "price",
+      "price_unit",
+      "queue_time",
+      "sid",
+      "start_time",
+      "stir_verstat",
+      "subresource_uris",
+      "to",
+      "to_formatted",
+      "trunk_sid",
+      "uri"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

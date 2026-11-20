@@ -41,6 +41,13 @@ defmodule Twilio.Schemas.ValidationRequest do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: ["account_sid", "call_sid", "friendly_name", "phone_number", "validation_code"]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

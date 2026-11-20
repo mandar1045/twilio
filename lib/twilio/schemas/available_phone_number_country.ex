@@ -41,6 +41,10 @@ defmodule Twilio.Schemas.AvailablePhoneNumberCountry do
     ]
   end
 
+  def __schema__(:required), do: []
+  def __schema__(:nullable), do: ["beta", "country", "country_code", "subresource_uris", "uri"]
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

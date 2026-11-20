@@ -166,6 +166,44 @@ defmodule Twilio.Schemas.IncomingPhoneNumberTollFree do
     ]
   end
 
+  def __schema__(:required), do: []
+
+  def __schema__(:nullable),
+    do: [
+      "account_sid",
+      "address_sid",
+      "api_version",
+      "beta",
+      "bundle_sid",
+      "capabilities",
+      "date_created",
+      "date_updated",
+      "emergency_address_sid",
+      "friendly_name",
+      "identity_sid",
+      "origin",
+      "phone_number",
+      "sid",
+      "sms_application_sid",
+      "sms_fallback_method",
+      "sms_fallback_url",
+      "sms_method",
+      "sms_url",
+      "status",
+      "status_callback",
+      "status_callback_method",
+      "trunk_sid",
+      "uri",
+      "voice_application_sid",
+      "voice_caller_id_lookup",
+      "voice_fallback_method",
+      "voice_fallback_url",
+      "voice_method",
+      "voice_url"
+    ]
+
+  def __schema__(:additional), do: nil
+
   @doc "Decodes parsed JSON into this struct."
   @spec decode(term) :: t | term
   def decode(json), do: Infusion.Runtime.Schema.decode_module(json, __MODULE__)

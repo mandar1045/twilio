@@ -55,6 +55,7 @@ defmodule Twilio.Recordings.AddOnResults.Payloads do
     response: {:ref, Twilio.Schemas.RecordingsAddOnResultsPayloadsListResponse},
     paginate: %{
       from: ["next_page_uri"],
+      id: "sid",
       items: ["payloads"],
       style: :next_url,
       item: {:ref, Twilio.Schemas.RecordingAddOnResultPayload}
@@ -112,6 +113,24 @@ defmodule Twilio.Recordings.AddOnResults.Payloads do
     do:
       Infusion.Runtime.Request.unwrap!(
         Twilio.__paginate__(@list_operation, [reference_sid, add_on_result_sid], params, opts)
+      )
+
+  @doc """
+  Watches this list and sends what changes: starts a process, linked to the caller, that polls it (with `ETag`s, so unchanged pages cost a `304`) and sends `{:infusion_watch, pid, %Infusion.Runtime.Watch.Event{}}` for every Twilio.Schemas.RecordingAddOnResultPayload.t() created, updated, deleted, or that moved into view (`:entered`).
+
+  Options: `every:` (milliseconds, default 30 seconds), `to:` (a pid, `{:pubsub, MyApp.PubSub, topic}` or a function), `pages:`, `initial:`, `ignore:`, plus any setting of `Infusion.Runtime.Config`. See `Infusion.Runtime.Watch`.
+  """
+  @spec list_watch(String.t(), String.t(), map() | keyword(), keyword()) ::
+          {:ok, pid()} | {:error, Infusion.Runtime.Error.t()}
+  def list_watch(reference_sid, add_on_result_sid, params \\ %{}, opts \\ []),
+    do: Twilio.__watch__(@list_operation, [reference_sid, add_on_result_sid], params, opts)
+
+  @doc "Like `list_watch/4`, but returns the stream or raises `Infusion.Runtime.Error`."
+  @spec list_watch!(String.t(), String.t(), map() | keyword(), keyword()) :: pid()
+  def list_watch!(reference_sid, add_on_result_sid, params \\ %{}, opts \\ []),
+    do:
+      Infusion.Runtime.Request.unwrap!(
+        Twilio.__watch__(@list_operation, [reference_sid, add_on_result_sid], params, opts)
       )
 
   @retrieve_operation %{
